@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@Entity(name="Station")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class StationDTO {
 
@@ -40,11 +40,11 @@ public class StationDTO {
 
     private BigDecimal y;
 
-    @OneToMany(mappedBy = "Departure_station")
+    @OneToMany(mappedBy = "departure_stationDTO")
     @JsonIgnore
     private List<JourneyDTO> journeysFrom;
 
-    @OneToMany(mappedBy = "Return_station")
+    @OneToMany(mappedBy = "return_stationDTO")
     @JsonIgnore
     private List<JourneyDTO> journeysTo;
 

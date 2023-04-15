@@ -36,14 +36,14 @@ public class MainController {
         headers.add("total-pages", "1");
         return new ResponseEntity<>(journeyDTOs, headers, HttpStatus.OK);
     }
-
+/*
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/journey", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JourneyWithStationsDTO> getJourney() {
         JourneyDTO journeyDTO = journeyRepository.findOneJourney();
         return ResponseEntity.ok(new JourneyWithStationsDTO(journeyDTO));
     }
-
+*/
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/top5returnstations")
     public @ResponseBody Iterable<StationDTO> getTop5ReturnStationsByStationId(int stationId) {

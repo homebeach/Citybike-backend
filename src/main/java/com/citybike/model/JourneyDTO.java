@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
+@Entity(name="Journey")
 public class JourneyDTO {
     @Id
     private Date Departure_time;
