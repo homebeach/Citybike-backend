@@ -1,4 +1,4 @@
-package com.citybike;
+package com.citybike.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -64,46 +64,46 @@ public class JourneyWithStationsDTO {
 
     }
 
-    public JourneyWithStationsDTO(Journey journey) {
+    public JourneyWithStationsDTO(JourneyDTO journeyDTO) {
 
-        Departure_time = journey.getDeparture_time();
-        Return_time = journey.getReturn_time();
-        Duration = journey.getDuration();
-        Covered_distance = journey.getCovered_distance();
+        Departure_time = journeyDTO.getDeparture_time();
+        Return_time = journeyDTO.getReturn_time();
+        Duration = journeyDTO.getDuration();
+        Covered_distance = journeyDTO.getCovered_distance();
 
-        Station departure_station = journey.getDeparture_station();
-        Station return_station = journey.getReturn_station();
+        StationDTO departure_stationDTO = journeyDTO.getDeparture_station();
+        StationDTO return_stationDTO = journeyDTO.getReturn_station();
 
-        if(departure_station != null) {
-            Departure_station_id = departure_station.getId();
-            Departure_station_fid = departure_station.getFid();
-            Departure_station_nimi = departure_station.getNimi();
-            Departure_station_namn = departure_station.getNamn();
-            Departure_station_name = departure_station.getName();
-            Departure_station_osoite = departure_station.getOsoite();
-            Departure_station_address = departure_station.getAddress();
-            Departure_station_kaupunki = departure_station.getKaupunki();
-            Departure_station_stad = departure_station.getStad();
-            Departure_station_operaattori = departure_station.getOperaattori();
-            Departure_station_kapasiteetti = departure_station.getKapasiteetti();
-            Departure_station_x = departure_station.getX();
-            Departure_station_y = departure_station.getY();
+        if(departure_stationDTO != null) {
+            Departure_station_id = departure_stationDTO.getId();
+            Departure_station_fid = departure_stationDTO.getFid();
+            Departure_station_nimi = departure_stationDTO.getNimi();
+            Departure_station_namn = departure_stationDTO.getNamn();
+            Departure_station_name = departure_stationDTO.getName();
+            Departure_station_osoite = departure_stationDTO.getOsoite();
+            Departure_station_address = departure_stationDTO.getAddress();
+            Departure_station_kaupunki = departure_stationDTO.getKaupunki();
+            Departure_station_stad = departure_stationDTO.getStad();
+            Departure_station_operaattori = departure_stationDTO.getOperaattori();
+            Departure_station_kapasiteetti = departure_stationDTO.getKapasiteetti();
+            Departure_station_x = departure_stationDTO.getX();
+            Departure_station_y = departure_stationDTO.getY();
         }
 
-        if(return_station != null) {
-            Return_station_id = return_station.getId();
-            Return_station_fid = return_station.getFid();
-            Return_station_nimi = return_station.getNimi();
-            Return_station_namn = return_station.getNamn();
-            Return_station_name = return_station.getName();
-            Return_station_osoite = return_station.getOsoite();
-            Return_station_address = return_station.getAddress();
-            Return_station_kaupunki = return_station.getKaupunki();
-            Return_station_stad = return_station.getStad();
-            Return_station_operaattori = return_station.getOperaattori();
-            Return_station_kapasiteetti = return_station.getKapasiteetti();
-            Return_station_x = return_station.getX();
-            Return_station_y = return_station.getY();
+        if(return_stationDTO != null) {
+            Return_station_id = return_stationDTO.getId();
+            Return_station_fid = return_stationDTO.getFid();
+            Return_station_nimi = return_stationDTO.getNimi();
+            Return_station_namn = return_stationDTO.getNamn();
+            Return_station_name = return_stationDTO.getName();
+            Return_station_osoite = return_stationDTO.getOsoite();
+            Return_station_address = return_stationDTO.getAddress();
+            Return_station_kaupunki = return_stationDTO.getKaupunki();
+            Return_station_stad = return_stationDTO.getStad();
+            Return_station_operaattori = return_stationDTO.getOperaattori();
+            Return_station_kapasiteetti = return_stationDTO.getKapasiteetti();
+            Return_station_x = return_stationDTO.getX();
+            Return_station_y = return_stationDTO.getY();
         }
     }
 

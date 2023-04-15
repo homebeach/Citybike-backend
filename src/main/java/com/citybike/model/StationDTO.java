@@ -1,4 +1,4 @@
-package com.citybike;
+package com.citybike.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Station {
+public class StationDTO {
 
     @Id
     @Column(name = "ID")
@@ -42,25 +42,25 @@ public class Station {
 
     @OneToMany(mappedBy = "Departure_station")
     @JsonIgnore
-    private List<Journey> journeysFrom;
+    private List<JourneyDTO> journeysFrom;
 
     @OneToMany(mappedBy = "Return_station")
     @JsonIgnore
-    private List<Journey> journeysTo;
+    private List<JourneyDTO> journeysTo;
 
-    public List<Journey> getJourneysFrom() {
+    public List<JourneyDTO> getJourneysFrom() {
         return journeysFrom;
     }
 
-    public void setJourneysFrom(List<Journey> journeysFrom) {
+    public void setJourneysFrom(List<JourneyDTO> journeysFrom) {
         this.journeysFrom = journeysFrom;
     }
 
-    public List<Journey> getJourneysTo() {
+    public List<JourneyDTO> getJourneysTo() {
         return journeysTo;
     }
 
-    public void setJourneysTo(List<Journey> journeysTo) {
+    public void setJourneysTo(List<JourneyDTO> journeysTo) {
         this.journeysTo = journeysTo;
     }
 
@@ -75,8 +75,8 @@ public class Station {
     public double getAverageJourneysFromDistance() {
         double totalDistance = 0.0;
         int numJourneys = journeysFrom.size();
-        for (Journey journey : journeysFrom) {
-            totalDistance += journey.getCovered_distance();
+        for (JourneyDTO journeyDTO : journeysFrom) {
+            totalDistance += journeyDTO.getCovered_distance();
         }
         return numJourneys > 0 ? totalDistance / numJourneys : 0.0;
     }
@@ -84,8 +84,8 @@ public class Station {
     public double getAverageJourneysToDistance() {
         double totalDistance = 0.0;
         int numJourneys = journeysTo.size();
-        for (Journey journey : journeysTo) {
-            totalDistance += journey.getCovered_distance();
+        for (JourneyDTO journeyDTO : journeysTo) {
+            totalDistance += journeyDTO.getCovered_distance();
         }
         return numJourneys > 0 ? totalDistance / numJourneys : 0.0;
     }

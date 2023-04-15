@@ -6,20 +6,20 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
+import com.citybike.controller.MainController;
+import com.citybike.model.JourneyDTO;
+import com.citybike.model.JourneyWithStationsDTO;
+import com.citybike.model.StationDTO;
+import com.citybike.repository.JourneyRepository;
+import com.citybike.repository.StationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.citybike.Station;
-import com.citybike.StationRepository;
-import com.citybike.MainController;
 @SpringBootTest
 class CityBikeApplicationTests {
 
@@ -32,43 +32,43 @@ class CityBikeApplicationTests {
 	@InjectMocks
 	private MainController mainController;
 
-	private Station station1;
+	private StationDTO stationDTO1;
 
-	private Station station2;
+	private StationDTO stationDTO2;
 
 	@BeforeEach
 	void setUp() {
-		station1 = new Station();
-		station1.setId(1L);
-		station1.setName("Station 1");
+		stationDTO1 = new StationDTO();
+		stationDTO1.setId(1L);
+		stationDTO1.setName("Station 1");
 
-		station2 = new Station();
-		station2.setId(2L);
-		station2.setName("Station 2");
+		stationDTO2 = new StationDTO();
+		stationDTO2.setId(2L);
+		stationDTO2.setName("Station 2");
 	}
 
 	@Test
 	public void testGetAllStations() {
 
-		when(stationRepository.findAll()).thenReturn(Arrays.asList(station1, station2));
+		when(stationRepository.findAll()).thenReturn(Arrays.asList(stationDTO1, stationDTO2));
 
-		Iterable<Station> result = mainController.getAllStations();
+		Iterable<StationDTO> result = mainController.getAllStations();
 
 		assertNotNull(result);
 		assertTrue(result.iterator().hasNext());
-		assertEquals(2, ((List<Station>) result).size());
-		assertEquals(station1, ((List<Station>) result).get(0));
-		assertEquals(station2, ((List<Station>) result).get(1));
+		assertEquals(2, ((List<StationDTO>) result).size());
+		assertEquals(stationDTO1, ((List<StationDTO>) result).get(0));
+		assertEquals(stationDTO2, ((List<StationDTO>) result).get(1));
 	}
 
 	@Test
 	public void testGetAllJourneys() {
 
-		Journey journey1 = new Journey();
-		journey1.setCovered_distance(20);
-		journey1.setDuration(20);
+		JourneyDTO journeyDTO1 = new JourneyDTO();
+		journeyDTO1.setCovered_distance(20);
+		journeyDTO1.setDuration(20);
 
-		when(journeyRepository.findAll()).thenReturn(Arrays.asList(journey1));
+		when(journeyRepository.findAll()).thenReturn(Arrays.asList(journeyDTO1));
 
 		ResponseEntity<Iterable<JourneyWithStationsDTO>> responseEntity = mainController.getJourneys();
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());

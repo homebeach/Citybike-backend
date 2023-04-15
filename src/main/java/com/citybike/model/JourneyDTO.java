@@ -1,27 +1,27 @@
-package com.citybike;
+package com.citybike.model;
 
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-public class Journey {
+public class JourneyDTO {
     @Id
     private Date Departure_time;
     private Date Return_time;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "departure_station_id")
-    private Station Departure_station;
+    private StationDTO departure_stationDTO;
     private String Departure_station_name;
 
-    public void setReturn_station(Station return_station) {
-        Return_station = return_station;
+    public void setReturn_station(StationDTO return_stationDTO) {
+        this.return_stationDTO = return_stationDTO;
     }
 
     @OneToOne
     @JoinColumn(name = "return_station_id", referencedColumnName = "id")
-    private Station Return_station;
+    private StationDTO return_stationDTO;
     private String Return_station_name;
     private int Duration;
     private int Covered_distance;
@@ -50,12 +50,12 @@ public class Journey {
         Return_time = return_time;
     }
 
-    public Station getDeparture_station() {
-        return Departure_station;
+    public StationDTO getDeparture_station() {
+        return departure_stationDTO;
     }
 
-    public void setDeparture_station(Station departure_station) {
-        Departure_station = departure_station;
+    public void setDeparture_station(StationDTO departure_stationDTO) {
+        this.departure_stationDTO = departure_stationDTO;
     }
 
     public String getDeparture_station_name() {
@@ -66,8 +66,8 @@ public class Journey {
         Departure_station_name = departure_station_name;
     }
 
-    public Station getReturn_station() {
-        return Return_station;
+    public StationDTO getReturn_station() {
+        return return_stationDTO;
     }
 
     public String getReturn_station_name() {
