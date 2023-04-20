@@ -1,6 +1,8 @@
 package com.citybike.repository;
 
 import com.citybike.model.StationDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +17,6 @@ public interface StationRepository extends CrudRepository<StationDTO, Integer> {
     @Query(value = "SELECT s.* FROM Journey j, Station s WHERE j.Return_station_id=:stationId AND j.Departure_station_id=s.ID GROUP BY j.Departure_station_id ORDER BY count(j.Departure_station_id) DESC LIMIT 5", nativeQuery = true)
     List<StationDTO> findTop5DepartureStationsByStationId(@Param("stationId") int stationId);
 
+    Page<StationDTO> findAll(Pageable pageable);
 
 }

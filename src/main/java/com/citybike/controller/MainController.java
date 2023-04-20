@@ -67,8 +67,17 @@ public class MainController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/stations")
-    public @ResponseBody Iterable<StationDTO> getAllStations() {
-        return stationRepository.findAll();
+    public @ResponseBody Iterable<StationDTO> getAllStations(@RequestParam(defaultValue = "0") int page,
+                                                             @RequestParam(defaultValue = "10") int size) {
+        Pageable paging = PageRequest.of(page, size);
+        Page<StationDTO> pagedResult = stationRepository.findAll(paging);
+        List<StationDTO> stationDTOs = pagedResult.getContent().stream().collect(Collectors.toList());
+        return stationDTOs;
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/stationscount")
+    public @ResponseBody long getStationsCount() {
+        return stationRepository.count();
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -77,5 +86,4 @@ public class MainController {
         Optional<StationDTO> station = stationRepository.findById(stationId);
         return stationRepository.findById(stationId);
     }
-
 }
