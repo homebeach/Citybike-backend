@@ -24,6 +24,22 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping(path="/")
 public class MainController {
+    public JourneyRepository getJourneyRepository() {
+        return journeyRepository;
+    }
+
+    public void setJourneyRepository(JourneyRepository journeyRepository) {
+        this.journeyRepository = journeyRepository;
+    }
+
+    public StationRepository getStationRepository() {
+        return stationRepository;
+    }
+
+    public void setStationRepository(StationRepository stationRepository) {
+        this.stationRepository = stationRepository;
+    }
+
     @Autowired
     private JourneyRepository journeyRepository;
     @Autowired
