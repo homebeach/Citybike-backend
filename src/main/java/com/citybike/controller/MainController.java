@@ -45,7 +45,7 @@ public class MainController {
     @Autowired
     private StationRepository stationRepository;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "https://citybike-frontend.azurewebsites.net"})
     @GetMapping(path="/journeys", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<JourneyWithStationsDTO>> getJourneys(@RequestParam(defaultValue = "0") int page,
                                                                     @RequestParam(defaultValue = "10") int size) {
@@ -63,25 +63,25 @@ public class MainController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "https://citybike-frontend.azurewebsites.net"})
     @GetMapping(path="/journeyscount")
     public @ResponseBody long getJourneysCount() {
         return journeyRepository.count();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "https://citybike-frontend.azurewebsites.net"})
     @GetMapping(path="/top5returnstations")
     public @ResponseBody Iterable<StationDTO> getTop5ReturnStationsByStationId(int stationId) {
         return stationRepository.findTop5ReturnStationsByStationId(stationId);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "https://citybike-frontend.azurewebsites.net"})
     @GetMapping(path="/top5departurestations")
     public @ResponseBody Iterable<StationDTO> getTop5DepartureStationsByStationId(int stationId) {
         return stationRepository.findTop5DepartureStationsByStationId(stationId);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "https://citybike-frontend.azurewebsites.net"})
     @GetMapping(path="/stations")
     public @ResponseBody Iterable<StationDTO> getAllStations(@RequestParam(defaultValue = "0") int page,
                                                              @RequestParam(defaultValue = "10") int size) {
@@ -90,13 +90,13 @@ public class MainController {
         List<StationDTO> stationDTOs = pagedResult.getContent().stream().collect(Collectors.toList());
         return stationDTOs;
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "https://citybike-frontend.azurewebsites.net"})
     @GetMapping(path="/stationscount")
     public @ResponseBody long getStationsCount() {
         return stationRepository.count();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "https://citybike-frontend.azurewebsites.net"})
     @GetMapping(path="/station")
     public @ResponseBody Optional<StationDTO> getStation(Integer stationId) {
         Optional<StationDTO> station = stationRepository.findById(stationId);
